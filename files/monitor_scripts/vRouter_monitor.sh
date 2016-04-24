@@ -50,16 +50,16 @@ def get_dict():
                                             eVm_id.append(vm_id)
                 return eVm_id
         else:
-                status=1
-                print status, 'link_local_status - WARNING  %s' %(str(resp.status_code))
+                status=2
+                print status, 'link_local_status - CRITICAL  %s' %(str(resp.status_code))
                 sys.exit(0)
     except requests.ConnectionError, e:
-        status=1
-        print status, 'link_local_status - WARNING  %s' %(str(e))
+        status=2
+        print status, 'link_local_status - CRITICAL  %s' %(str(e))
         sys.exit(0)
     except (requests.Timeout, socket.timeout) as te:
-        status=1
-        print status, 'Link_local_status - WARNING  %s' % (str(te))
+        status=2
+        print status, 'Link_local_status - CRITICAL  %s' % (str(te))
         sys.exit(0)
 
 def get_status():
@@ -91,7 +91,7 @@ if vm_name is None:
         status=0
         msg_fmt="OK all link local route are correct"
 else:
-        status=1
-        msg_fmt='Warning link local not created for vm ids %s' % (str(vm_name))
+        status=2
+        msg_fmt='CRITICAL link local not created for vm ids %s' % (str(vm_name))
 print status, "link_local_status - ", msg_fmt
 
