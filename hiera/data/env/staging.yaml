@@ -48,7 +48,7 @@ rjil::system::apt::env_repositories:
       id: '5DC149F6'
       source: 'http://10.140.221.229/apt/vpcjiocloud/vpcjiocloud/repo.key'
   contrail-main:
-    location: 'http://10.140.221.229/snapshots/5bee8bdf-d503-4fe2-9e01-aa0b1b8f257b/10.140.221.229/apt/vpcjiocloud/contrail/'
+    location: 'http://10.140.221.229/snapshots/6285e162-7828-47b5-b330-69b6308c6c11/10.140.221.229/apt/vpcjiocloud/contrail/'
     release: 'jiocloud'
     repos: 'main'
     include_src: false
