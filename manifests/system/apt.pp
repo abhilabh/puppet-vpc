@@ -16,6 +16,7 @@ class rjil::system::apt (
   $env_repositories  = {},
   $override_repo     = $::override_repo,
   $keys              = {},
+  $additional_repositories = {},
 ) {
 
   ## two settings to be overrided here in hiera
@@ -35,6 +36,8 @@ class rjil::system::apt (
   if $enable_puppetlabs {
     include puppet::repo::puppetlabs
   }
+
+  $res_env_repositories = deep_merge($env_repositories, $additional_repositories)
 
   if ($override_repo) {
     file { ['/var/lib/jiocloud', '/var/lib/jiocloud/overrides']:
@@ -84,5 +87,5 @@ class rjil::system::apt (
 
   create_resources(apt::key, $keys, {require => Package['ubuntu-cloud-keyring']} )
   create_resources(apt::source, $repositories, {'tag' => 'package'} )
-  create_resources(apt::source, $env_repositories, {'tag' => 'package'} )
+  create_resources(apt::source, $res_env_repositories, {'tag' => 'package'} )
 }
