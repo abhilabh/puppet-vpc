@@ -103,4 +103,23 @@ class rjil::nova::compute (
     ensure  => present,
     content => '',
   }
+
+  ##
+  #Patch /usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py
+  #
+  file {'virt_libvirt_driver_py.patch':
+    ensure => present,
+    path   => '/tmp/virt_libvirt_driver_py.patch',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/rjil/patches/nova/virt_libvirt_driver_py.patch',
+  }
+  exec { 'patch_virt_libvirt_driver':
+    command => 'patch /usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py /tmp/virt_libvirt_driver_py.patch',
+    path    => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin',
+    onlyif  => 'test -e /usr/lib/python2.7/dist-packages/nova/virt/libvirt/driver.py && test -e /tmp/virt_libvirt_driver_py.patch',
+    notify  => Service['nova-compute'],
+  }
+
 }
