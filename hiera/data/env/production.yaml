@@ -13,10 +13,10 @@ ssh::server::storeconfigs_enabled: false
 
 
 # Account Management
-rjil::system::accounts::active_users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj]
+rjil::system::accounts::active_users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj,anupam,rahuljain]
 rjil::system::accounts::sudo_users:
   admin:
-    users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj]
+    users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj,anupam,rahuljain]
 
 # Consul Properties
 rjil::jiocloud::consul::service::interval: 120s
