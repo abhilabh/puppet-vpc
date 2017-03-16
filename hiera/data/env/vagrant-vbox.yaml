@@ -139,7 +139,7 @@ rjil::system::apt::env_repositories:
       source: 'http://10.140.214.61/apt/vpcjiocloud/vpcbase/repo.key'
     pin:
       release: 'jiocloud'
-      priority: '900'
+      priority: '450'
       label: 'vpcbase'
   jiocloud-vpc-puppet:
     location: 'http://10.140.214.61/apt/vpcjiocloud/vpcjiocloud'

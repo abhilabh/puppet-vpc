@@ -1,0 +1,11 @@
+--- driver.py	2017-01-19 16:18:15.000000000 +0530
++++ driver_new.py	2017-03-15 14:44:35.411666628 +0530
+@@ -2080,7 +2080,7 @@
+         root_device_info['block_device_mapping'] = []
+         sec_device_info['block_device_mapping'] = []
+         has_sec_device = False
+-        parse_error = True
++        parse_error = False
+         if bdm and root_device_name:
+             for entry in bdm:
+                 ## This confirms that the bdm dict is correct as there
