@@ -3,4 +3,4 @@ mysql::server::override_options:
   mysqld:
     bind-address: '0.0.0.0'
 mysql::server::restart: true
-ec2api::db::mysql::allowed_hosts: ['keystone1','image.jiocloud.com','compute.jiocloud.com'] 
+ec2api::db::mysql::allowed_hosts: ['keystone1','image.jiocloud.com','compute.jiocloud.com','vpc-ctrl1','vpc-ctrl2','vpc-cfg1']

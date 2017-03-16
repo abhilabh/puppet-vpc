@@ -31,3 +31,15 @@ rjil::system::apt::env_repositories:
       release: 'jiocloud'
       priority: '1002'
       label: 'JioCloudComputeAdmin'
+  jiocloud-vpc-vagrant:
+    location: 'http://10.140.214.61/apt/vpcjiocloud/vagrant'
+    release: 'jiocloud'
+    repos: 'main'
+    include_src: false
+    key:
+      id: 'D962FA5C'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vagrant/repo.key'
+    pin:
+      release: 'jiocloud'
+      priority: '1004'
+      label: 'vagrant'
