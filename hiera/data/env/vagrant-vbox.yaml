@@ -25,6 +25,11 @@ rjil::system::accounts::sudo_users:
     users: [vpramo,naveenreddy,saju,dpak,viveksharma]
 ceph::conf::mon_timecheck_interval: 30
 
+## For PAAS
+db_connection : "mysql://ec2api:ec2api@network.jiocloud.com/ec2api"
+neutron::server::database_connection: "%{hiera('db_connection')}"
+rjil::neutron::contrail::ec2_db: true
+
 ##
 # rustedhalo_apt_repo_release override make sure people have option to choose
 # which repository to use.  Valid repos
@@ -55,9 +60,9 @@ rjil::jiocloud::consul::encrypt: "%{consul_gossip_encrypt}"
 
 upstream_ntp_servers:
   - 10.140.214.14
-  - 10.140.221.235
-  - 10.140.221.232
-  - 10.140.221.236
+  #- 10.140.221.235
+  #- 10.140.221.232
+  #- 10.140.221.236
 
 #rjil::system::proxies:
 #  "no":
