@@ -210,9 +210,10 @@ rjil::system::apt::keys:
     id: '5EDB1B62EC4926EA'
 
 ntp::servers:
-  - 10.140.221.235
-  - 10.140.221.232
-  - 10.140.221.236
+  - 10.140.214.14
+  # - 10.140.221.235
+  # - 10.140.221.232
+  # - 10.140.221.236
 
 rjil::pacemaker::ipaddress: "%{ipaddress_eth1}"
 virtual_ha_ip: '192.168.100.29'
