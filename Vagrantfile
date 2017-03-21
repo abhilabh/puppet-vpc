@@ -99,7 +99,7 @@ Vagrant.configure("2") do |config|
         "echo https_proxy=#{ENV['https_proxy']} >> /etc/environment"
       end
       config.vm.provision 'shell', :inline =>
-        "echo no_proxy='127.0.0.1,169.254.169.254,localhost,consul,jiocloud.com,192.168.100.0/24' >> /etc/environment"
+        "echo no_proxy='127.0.0.1,169.254.169.254,localhost,consul,jiocloud.com,jiocloudservices.com,192.168.100.0/24' >> /etc/environment"
       # run apt-get update and install pip
       unless ENV['NO_APT_GET_UPDATE'] == 'true'
         config.vm.provision 'shell', :inline =>
