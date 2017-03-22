@@ -381,3 +381,15 @@ ec2api::ec2api_config:
   admin_account/time_limit:
     value:  "%{hiera('flow_log_limit_time')}"
 
+##Flowlog##
+rjil::celery::celery::analytics_query_endpoint: 'http://localhost:8081/analytics/query'
+rjil::celery::celery::dss_account_id: 'Ax2GIXtvWlNrXJW2BGuD4aULzhME6FF82RKiHA=='
+rjil::celery::celery::jcs_access_key: 'ZAD+l7yYyYQsVUqylRYONJFil2POdU0LhrhipMwu75TXsIvc2Dp29LvsY1lLqZnf'
+rjil::celery::celery::jcs_secret_key: 'rUXGaZQinCMJi9FXuT/HAPg374SMKN6+Evjv/zx46oxiGl/V6bR1OyKco8FASZ8D'
+rjil::celery::celery::jcs_vpc_endpoint: 'https://vpc.ind-west-1.staging.jiocloudservices.com'
+rjil::celery::celery::jcs_dss_endpoint: 'https://dss.ind-west-1.staging.jiocloudservices.com'
+rjil::celery::celery::jcs_iam_endpoint: 'https://iam.ind-west-1.staging.jiocloudservices.com'
+rjil::celery::celery::periodic_task_interval: 3600
+#rjil::celery::celery::time_interval:
+#rjil::celery::celery::time_delta:
+

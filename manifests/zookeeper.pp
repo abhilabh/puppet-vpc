@@ -19,8 +19,9 @@ class rjil::zookeeper (
   $seed          = false,
   $min_members   = 3,
   $datastore     = '/var/lib/zookeeper',
+  $consul_service_name = 'zookeeper',
+  $host_zkid_map = {'vpc-cfg1'=>1, 'vpc-ctrl1'=>2, 'vpc-ctrl2'=>3},
 ) {
-
 
   # both of these functions also have hardcoded the use of the 4th octet
   # to determine uniqueness
@@ -45,41 +46,48 @@ class rjil::zookeeper (
 
   # Add a check that always succeeds that we can use to know
   # when we have enough members ready to configure a cluster.
-  rjil::jiocloud::consul::service { 'pre-zookeeper':
+  rjil::jiocloud::consul::service { "pre-$consul_service_name":
     check_command => '/bin/true',
     tags => ['real', $zk_id]
   }
 
   # the non-seed nodes should not configure themselves until
   # there is at least one active seed node
-  if ! $seed {
-    $zk_id = regsubst($::hostname, '^vpc-ctrl(\d+)$','\1')+1
-    notice($zk_id)
-    notice($::hostname)
+  #if ! $seed {
+  #  $zk_id = regsubst($::hostname, '^.*(\d+)$','\1')+1
+  #  notice("zk_id: $zk_id")
+  #  notice($::hostname)
     #rjil::service_blocker { "zookeeper":
     #  before  => $zk_files,
     #  require => Runtime_fail['zk_members_not_ready']
     #}
-  }
-  else {
-    $zk_id = '1'
-  }
+  #}
+  #else {
+  #  $zk_id = '1'
+  #}
 
-  rjil::test::check { 'zookeeper':
+  $zk_id = $host_zkid_map[$::hostname]
+  notice("zk_id: $zk_id")
+  $host_names = keys($host_zkid_map)
+  notice("host_names: $host_names")
+
+  rjil::test::check { $consul_service_name:
     type    => 'tcp',
     address => '127.0.0.1',
     port    => 2181,
   }
 
-  rjil::jiocloud::consul::service { 'zookeeper':
+  rjil::jiocloud::consul::service { $consul_service_name:
     port          => 2181,
     tags          => ['real', 'contrail'],
   }
 
+  $host_ips =[$hosts[$host_names[0]], $hosts[$host_names[1]], $hosts[$host_names[2]]]
+
   class { '::zookeeper':
     id        => $zk_id,
     client_ip => $local_ip,
-    servers   => [$hosts['vpc-cfg1'], $hosts['vpc-ctrl1'], $hosts['vpc-ctrl2']],
+    servers   => $host_ips,
     datastore => $datastore,
   }
 

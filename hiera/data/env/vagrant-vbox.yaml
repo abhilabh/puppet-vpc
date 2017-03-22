@@ -239,3 +239,20 @@ neutron::policy::policies:
     value: 'rule:context_is_admin or tenant_id:%(tenant_id)s'
 
 rjil::haproxy::contrail::ec2api_listen_ports: '1443'
+
+##Flowlog##
+rjil::celery::celery::host_zkid_map:
+  vpc-analytics1: 1
+  vpc-analytics2: 2
+  vpc-analytics3: 3
+rjil::celery::celery::analytics_query_endpoint: 'http://localhost:8081/analytics/query'
+rjil::celery::celery::dss_account_id: 'Ax2GIXtvWlNrXJW2BGuD4aULzhME6FF82RKiHA=='
+rjil::celery::celery::jcs_access_key: 'ZAD+l7yYyYQsVUqylRYONJFil2POdU0LhrhipMwu75TXsIvc2Dp29LvsY1lLqZnf'
+rjil::celery::celery::jcs_secret_key: 'rUXGaZQinCMJi9FXuT/HAPg374SMKN6+Evjv/zx46oxiGl/V6bR1OyKco8FASZ8D'
+rjil::celery::celery::jcs_vpc_endpoint: 'https://network.jiocloud.com/'
+rjil::celery::celery::jcs_dss_endpoint: 'https://dss.ind-west-1.staging.jiocloudservices.com'
+rjil::celery::celery::jcs_iam_endpoint: 'https://iam.ind-west-1.staging.jiocloudservices.com'
+rjil::celery::celery::periodic_task_interval: 3600
+#rjil::celery::celery::time_interval:
+#rjil::celery::celery::time_delta:
+
