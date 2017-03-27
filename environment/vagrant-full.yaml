@@ -1,6 +1,6 @@
 resources:
   haproxy:
-    number: 2
+    number: 1
     flavor: medium
     image: trusty
     networks: default
@@ -20,12 +20,6 @@ resources:
   keystone:
     number: 1
     flavor: xlarge
-    image: trusty
-    networks: default
-    boot_volume: default_volume
-  vpc-monitor:
-    number: 1
-    flavor: medium
     image: trusty
     networks: default
     boot_volume: default_volume

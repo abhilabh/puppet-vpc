@@ -22,6 +22,7 @@ class rjil::rabbitmq (
   $erlang_cookie = 'A_SECRET_COOKIE',
   $cluster_node_type = 'disc',
   $min_members = '3',
+  $consul_service_name = 'rabbitmq',
 ) {
 
   rjil::test { 'check_rabbitmq.sh': }
@@ -54,7 +55,7 @@ class rjil::rabbitmq (
 
   # Add a check that always succeeds that we can use to know
   # when we have enough members ready to configure a cluster.
-  rjil::jiocloud::consul::service { 'pre-rabbitmq':
+  rjil::jiocloud::consul::service { "pre-$consul_service_name":
     check_command => '/bin/true',
     tags => ['real', 'contrail']
   }
@@ -65,13 +66,13 @@ class rjil::rabbitmq (
     write_permission     => '.*',
   }
 
- rjil::test::check { 'rabbitmq':
+ rjil::test::check { $consul_service_name:
     type    => 'tcp',
     address => '127.0.0.1',
     port    => 5672,
   }
 
-  rjil::jiocloud::consul::service { 'rabbitmq':
+  rjil::jiocloud::consul::service { $consul_service_name:
     tags          => ['real', 'contrail'],
     port          => 5672,
   }

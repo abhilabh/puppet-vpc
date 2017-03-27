@@ -1,9 +1,5 @@
 #All Staging Snapshots
 
-contrail_old_snap: cbda4e14-562e-44d1-81d2-8a92fc216105
-contrail_main_snap: aa83be0b-db39-4640-b1f5-44c52487eb89
-rustedhalo_snap: 8f23f6d7-719b-4898-a201-d4672cd37773
-ubuntu_main_snap: 5f7eac30-afdf-47ad-8ca2-4c2f9ce49930
-ubuntu_updates_snap: d84b8cc3-846b-4b64-9688-827b437b73b1
-ubuntu_security_snap: b538b5c0-80e3-47c7-9791-a98f6ef37093
-ubuntu_kilo_snap: 5b1646b3-6124-4e6b-a42b-e1af7428c5d9
+vpcbase_snap: 7fa9daf8-529a-4223-b974-0b55e6e29aa9
+contrail_main_snap: 6e600d02-e24b-4a35-b4b0-0e176c9fe921
+ubuntu_main_snap: 3657a405-c6b3-4648-af1b-2f28cb8324f6

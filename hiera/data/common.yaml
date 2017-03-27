@@ -1114,6 +1114,8 @@ ec2api::db::mysql::password: 'ec2api'
 ec2api::ec2api_config:
   DEFAULT/external_network:
     value: 'public'
+  DEFAULT/account_profile_type:
+    value: 'low'
   DEFAULT/full_vpc_support:
     value: True
   DEFAULT/keystone_url:

@@ -1,3 +1,17 @@
-rjil::cassandra::seed: true
 rjil::cassandra::db_for_config: false
-rjil::cassandra::cluster_name: 'analytics'
+rjil::contrail::analytics::cluster_name: 'analytics'
+rjil::contrail::analytics::cassandra_seed_hostname: 'vpc-analytics1'
+rjil::system::apt::additional_repositories:
+  jiocloud-vpc-vpcflowlog:
+    location: 'http://10.140.214.61/snapshots/1acb0c2d-8a47-4ab7-a697-f2e0b2b275f7/10.140.214.61/apt/vpcjiocloud/vpcflowlog/'
+    release: 'jiocloud'
+    repos: 'main'
+    include_src: false
+    pin:
+      release: 'jiocloud'
+      priority: '1002'
+      label: 'vpcflowlog'
+    key:
+      id: '3A0C3233'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vpcflowlog/repo.key'
+

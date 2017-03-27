@@ -1,7 +1,7 @@
 class rjil::os_config(
 $package_list = ['python-enum',
       'python-enum34',
-      'python-asn1',
+      'python-pyasn1',
       'python-mysqldb',
       'python-debtcollector',
       'python-psutil',

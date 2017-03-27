@@ -1,20 +1,27 @@
 nova::network::neutron::network_api_class: 'nova_contrail_vif.contrailvif.ContrailNetworkAPI'
 rjil::system::apt::env_repositories:
-  contrailv2:
-    location: 'http://10.140.221.229/snapshots/cbda4e14-562e-44d1-81d2-8a92fc216105/jiocloud.rustedhalo.com/contrailv2/'
-    release: 'trusty'
-    repos: 'main'
-    include_src: false
-  puppet-vpc:
-    location: 'http://10.140.221.229/apt/vpcjiocloud/vpcjiocloud'
+  jiocloud-vpc-base:
+    location: 'http://10.140.214.61/apt/vpcjiocloud/vpcbase'
     release: 'jiocloud'
     repos: 'main'
     include_src: false
     key:
-      id: '5DC149F6'
-      source: 'http://10.140.221.229/apt/vpcjiocloud/vpcjiocloud/repo.key'
-  contrail-main:
-    location: 'http://10.140.221.229/snapshots/1ce0f2eb-fe25-4bb3-b67b-c076265b4d31/10.140.221.229/apt/vpcjiocloud/contrail/'
+      id: 'CDA02C16'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vpcbase/repo.key'
+  jiocloud-vpc-puppet:
+    location: 'http://10.140.214.61/apt/vpcjiocloud/vpcjiocloud'
+    release: 'jiocloud'
+    repos: 'main'
+    include_src: false
+    key:
+      id: '8D1B9266'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vpcjiocloud/repo.key'
+    pin:
+      release: 'jiocloud'
+      priority: '1002'
+      label: 'vpcjiocloud'
+  jiocloud-vpc-contrail:
+    location: 'http://10.140.214.61/apt/vpcjiocloud/contrail'
     release: 'jiocloud'
     repos: 'main'
     include_src: false
@@ -23,44 +30,16 @@ rjil::system::apt::env_repositories:
       priority: '1002'
       label: 'contrail'
     key:
-      id: 'DD62245F'
-      source: 'http://10.140.221.229/apt/vpcjiocloud/contrail/repo.key'
-  glance-image:
-    location: 'http://10.140.221.229/apt/vpramo/glance'
-    release: 'jiocloud'
-    repos: 'main'
-    include_src: false
-    pin:
-      release: 'jiocloud'
-      priority: '800'
-      label: 'glance'
-    key:
-      id: '53046A7C'
-      source: 'http://10.140.221.229/apt/vpramo/glance/repo.key'
-  iam_repo:
-    location: 'http://10.140.221.229/apt/jioiambot/iamrepo'
+      id: 'FA8669DA'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/contrail/repo.key'
+  jiocloud-compute-base:
+    location: 'http://10.140.214.5/snapshots/3a4a1b90-cc09-4817-a622-548ee45dd9e9/10.140.214.5/apt/JioCloudComputeAdmin/JioCloudComputeAdmin/'
     release: 'jiocloud'
     repos: 'main'
     include_src: false
     architecture: 'amd64'
-    pin:
-      release: 'jiocloud'
-      priority: '1002'
-      label: 'iamrepo'
-    key:
-      id: '8911ABA0'
-      source: 'http://10.140.221.229/apt/jioiambot/iamrepo/repo.key'
-  nova_repo:
-    location: 'http://10.140.221.229/snapshots/e256f124-85b9-42cf-8358-a2bf065eead0/10.140.221.229/apt/JioCloudComputeAdmin/JioCloudComputeAdmin'
-    release: 'jiocloud'
-    repos: 'main'
-    include_src: false
-    architecture: 'amd64'
+    trusted_source: true
     pin:
       release: 'jiocloud'
       priority: '1002'
       label: 'JioCloudComputeAdmin'
-    key:
-      id: '52F93B14'
-      source: 'http://10.140.221.229/apt/JioCloudComputeAdmin/JioCloudComputeAdmin/repo.key'
-

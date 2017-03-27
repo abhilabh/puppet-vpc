@@ -13,10 +13,10 @@ ssh::server::storeconfigs_enabled: false
 
 
 # Account Management
-rjil::system::accounts::active_users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj]
+rjil::system::accounts::active_users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj,anupam,rahuljain]
 rjil::system::accounts::sudo_users:
   admin:
-    users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj]
+    users: [vpramo,naveenreddy,saju,dpak,viveksharma,harsh,basil,abhilabh,prashantj,anupam,rahuljain]
 
 # Consul Properties
 rjil::jiocloud::consul::service::interval: 120s
@@ -32,154 +32,49 @@ apt::purge:
   sources.list: true
 rjil::system::apt::enable_puppetlabs: true
 rjil::system::apt::env_repositories:
-  contrailv2:
-    location: "http://10.140.221.229/snapshots/%{hiera('contrail_old_snap')}/jiocloud.rustedhalo.com/contrailv2/"
-    release: 'trusty'
-    repos: 'main'
-    include_src: false
-    architecture: 'amd64'
-  puppet-vpc:
-    location: 'http://10.140.221.229/apt/vpcjiocloud/vpcjiocloud'
+  jiocloud-vpc-base:
+    location: "http://10.140.214.61/snapshots/%{hiera('vpcbase_snap')}/10.140.214.61/apt/vpcjiocloud/vpcbase/"
     release: 'jiocloud'
     repos: 'main'
     include_src: false
-    architecture: 'amd64'
     key:
-      id: '5DC149F6'
-      source: 'http://10.140.221.229/apt/vpcjiocloud/vpcjiocloud/repo.key'
-  contrail-main:
-    location: "http://10.140.221.229/snapshots/%{hiera('contrail_main_snap')}/10.140.221.229/apt/vpcjiocloud/contrail/"
+      id: 'CDA02C16'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vpcbase/repo.key'
+    pin:
+      release: 'jiocloud'
+      priority: '900'
+      label: 'vpcbase'
+  jiocloud-vpc-puppet:
+    location: 'http://10.140.214.61/apt/vpcjiocloud/vpcjiocloud'
     release: 'jiocloud'
     repos: 'main'
     include_src: false
-    architecture: 'amd64'
+    key:
+      id: '8D1B9266'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/vpcjiocloud/repo.key'
+    pin:
+      release: 'jiocloud'
+      priority: '1002'
+      label: 'vpcjiocloud'
+  jiocloud-vpc-contrail:
+    location: "http://10.140.214.61/snapshots/%{hiera('contrail_main_snap')}/10.140.214.61/apt/vpcjiocloud/contrail/"
+    release: 'jiocloud'
+    repos: 'main'
+    include_src: false
     pin:
       release: 'jiocloud'
       priority: '1002'
       label: 'contrail'
     key:
-      id: 'DD62245F'
-      source: 'http://10.140.221.229/apt/vpcjiocloud/contrail/repo.key'
-rjil::system::apt::repositories:
-  rustedhalo:
-    location: "http://10.140.221.229/snapshots/%{hiera('rustedhalo_snap')}/jiocloud.rustedhalo.com/ubuntu/"
-    release: "%{hiera('rustedhalo_apt_repo_release')}"
-    repos: 'main'
-    include_src: false
-    architecture: 'amd64'
-    key: '85596F7A'
-    key_content: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      Version: GnuPG v1
+      id: 'FA8669DA'
+      source: 'http://10.140.214.61/apt/vpcjiocloud/contrail/repo.key'
 
-      mQENBFM0FdsBCADbcuhgf4ny6HQXSCrskXK3hp8HUA4UbW9xIO/fqUzKTvxRuwUR
-      yRZHXVdCCaLOD8En+h4fnAs2PY3ueVfcIDt9DsJcmqWE+cbFG191Yw8hQV/MtxXU
-      YNAS6oKOwMheC3BtxdbplJ4hbg065m38wPmcgt/rJiAQZBxrKggCHTvIQunvJnmG
-      /7OMuwhkzewEAaG5E1mmdVq+IMJAg0ltMiRANASo07wrB0At4q62ozBomua6Hk3s
-      69ie5ZGiQtyIOgB1mO4RwxS0MoMd+ffq6Kyc8GPoM9EFj4zYGIyOZBa4YqI9cs9A
-      88E5910lHNx8p2wZCsN+Z00IDN3c6nGmHrzNABEBAAG0Kkppb0Nsb3VkIFJlcG9z
-      aXRvcnkgPHN1cHBvcnRAamlvY2xvdWQuY29tPokBOAQTAQIAIgUCUzQV2wIbAwYL
-      CQgHAwIGFQgCCQoLBBYCAwECHgECF4AACgkQhgQCvoVZb3oKVwf+Pr3hBs1h5oOk
-      VFHwQ/whCcnLjdY1so9wVeZ0TsZVRTrepyKB4Bi+yy4xtYZ572JLbORqRIfdOTgE
-      06cagaoi2Mc1e5sW/l0ifOvfjlrxIECMX4ftL2igZ7Cu4GB8+WmuDdHpsTdi1Fvx
-      9cn2eHAylHS3oblwoKpdfiHLPkP0Dt5aJFKOyBQfDPhjX4LF0S0aC0Zg43jNIZdf
-      nnC71P2+i5WwvljJV2+DTtp3/ImBMKVKgAISxOtBsA5PC+yP6X4lsUUwEP4amti8
-      jnq2HAjKkpM3UTAWLbHN3x6O2Mg+OIvjYUhrbYeHqQEQurUoPUx2FjZhrXDM/Cxg
-      tnaES5wRqLkBDQRTNBXbAQgAs4OQ1KlirGpiZC4hEvfmrkBKiJUk1sxsRzqqatkv
-      Ul5ay3DWoknYO+C7RIzYTwMQ9lv/QwJA2T+FpYykiu6gg872W5aje9xqg98z9DTM
-      C2lZ79yUMNiMNdKr6Zd05Q6zz0EQVaTMwrYEb+DOW0H8ka7HJA2MJc/ot0Bf2G2A
-      uavopMiikaVX67901qvHKqQMFgFzbe0C16poK057W3iFEnYAYTzJ6sLhCukfMkwk
-      6cIApeCEDz9d1tq5aiYcgXhnhnLnXBR9nUlI5qdfU/6+Nmcgh+izjtQp+U5cKHhl
-      YaiPfbVLQVUg/jbhem0XZuXJ9LdaNoeDdG+7KP7s+N+fIwARAQABiQEfBBgBAgAJ
-      BQJTNBXbAhsMAAoJEIYEAr6FWW96QewH/20zMCYcDgt8AoRJsyhLPLw8Xa8N57YD
-      EJfNUKA/74UrUSiLNktXzOVRLa1vAp5kdd9x6HNg5C0bt8kjvYzTvVChRBGt7NRg
-      SViL4sowyCFpT23JhHRajMmiJPigG+c4gjIJF4DbnpSG8WPC3jDPV891EZCodmaz
-      klc+BnhnZrb4FcB04RdQ/WXgVshDCzVQhmdIEILGKYHMTjlK/HkV6YqH7l7+jRvJ
-      phmH35+GJQumLfXWlvDchtBjUTo5ZDCa7TWhwhXZoFg5nxadQDX4TwHhZBQH1TX5
-      Chk4NnD90SYZt36sTLITe5O/BgYlRMqVo+bVj0tmjMJP/B4PZjABX7A=
-      =iZW7
-      -----END PGP PUBLIC KEY BLOCK-----
+rjil::system::apt::repositories:
   ubuntu:
-    location: "http://10.140.221.229/snapshots/%{hiera('ubuntu_main_snap')}/in.archive.ubuntu.com/ubuntu"
+    location: "http://10.140.214.61/snapshots/%{hiera('ubuntu_main_snap')}/in.archive.ubuntu.com/ubuntu"
     release: 'trusty'
     repos: 'main restricted universe multiverse'
     include_src: false
-    architecture: 'amd64'
-  ubuntu_updates:
-    location: "http://10.140.221.229/snapshots/%{hiera('ubuntu_updates_snap')}/in.archive.ubuntu.com/ubuntu"
-    release: 'trusty-updates'
-    repos: 'main restricted universe multiverse'
-    include_src: false
-    architecture: 'amd64'
-  ubuntu_security:
-    location: "http://10.140.221.229/snapshots/%{hiera('ubuntu_security_snap')}/in.archive.ubuntu.com/ubuntu"
-    release: 'trusty-security'
-    repos: 'main restricted universe multiverse'
-    include_src: false
-    architecture: 'amd64'
-  ubuntu_kilo:
-    location: "http://10.140.221.229/snapshots/%{hiera('ubuntu_kilo_snap')}/ubuntu-cloud.archive.canonical.com/ubuntu"
-    release: 'trusty-updates/kilo'
-    repos: 'main'
-    include_src: false
-    architecture: 'amd64'
-    pin:
-      release: 'trusty-updates'
-      priority: '700'
-      originator: 'Canonical'
-    key: '5EDB1B62EC4926EA'
-    key_content: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      Version: GnuPG v1
-      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
-      Oa4g9309p/+af/HU1smBrOfIeRoxb8jQoHu3
-      =xg4S
-      -----END PGP PUBLIC KEY BLOCK-----
 
 rjil::system::apt::keys:
   Canonical_Cloud_Archive:
@@ -221,6 +116,7 @@ rjil::trust_selfsigned_cert::cert: '/etc/ssl/certs/vpc.ind-west-1.jiocloudservic
 #analytics
 flow_log_limit: '240'
 flow_log_limit_day: "864000"
+flow_log_limit_time: "1800"
 
 # Haproxy Settings
 rjil::haproxy::default_timeout_connect: 50000
@@ -427,6 +323,10 @@ rjil::neutron::contrail::fip_pools:
     tenant_name: 'Customer-00000000000000000000723220141072'
 
 # Add MX routers for Contrail
+rt_user: 'devops1'
+rt_cred: 'vpc19082013'
+rt_address: '10.204.115.116'
+
 contrail::edge_routers:
   router1: {host_address: '10.204.115.116'}
   router2: {host_address: '10.204.115.117'}
@@ -471,6 +371,7 @@ contrail::vrouter::interface_is_dhcp: false
 rjil::contrail::vrouter_standalone::discovery_address: 'vpc.ind-west-1.internal.jiocloudservices.com'
 rjil::contrail::vrouter_standalone::vrouter_physical_interface: 'em49'
 rjil::contrail::vrouter_standalone::vrouter_physical_interface_backup: 'em3'
+rjil::contrail::vrouter_standalone::vrouter_physical_interface_quanta: 'p1p2'
 
 
 # Pacemaker and Corosync Configurations
@@ -521,6 +422,12 @@ ec2api::ec2api_config:
     value: '/etc/ssl/certs/vpc.ind-west-1.internal.jiocloudservices.com.crt'
   DEFAULT/ssl_key_file:
     value: '/etc/ssl/keys/vpc.ind-west-1.internal.jiocloudservices.com.key'
+  DEFAULT/router_address:
+    value: "%{hiera('rt_address')}"
+  DEFAULT/router_user:
+    value: "%{hiera('rt_user')}"  
+  DEFAULT/router_cred:
+    value: "%{hiera('rt_cred')}"
   database/connection:
     value: 'mysql://vpcjcsapi:yFZ5srcS@10.140.210.9/ec2api'
   keystone_authtoken/auth_port:
@@ -539,4 +446,6 @@ ec2api::ec2api_config:
     value:  'http://10.140.211.168:8081/analytics/query'
   admin_account/day_limit:
     value:  "%{hiera('flow_log_limit_day')}"
+  admin_account/time_limit:
+    value:  "%{hiera('flow_log_limit_time')}"
 

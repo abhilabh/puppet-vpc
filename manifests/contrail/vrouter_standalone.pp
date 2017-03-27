@@ -8,6 +8,7 @@ class rjil::contrail::vrouter_standalone (
   $api_address       = undef,
   $vrouter_physical_interface = 'eth1',
   $vrouter_physical_interface_backup = undef,
+  $vrouter_physical_interface_quanta = undef,
 ) {
 
   #include rjil::jiocloud
@@ -20,6 +21,7 @@ class rjil::contrail::vrouter_standalone (
     api_address       => $api_address,
     vrouter_physical_interface => $vrouter_physical_interface,
     vrouter_physical_interface_backup => $vrouter_physical_interface_backup,
+    vrouter_physical_interface_quanta => $vrouter_physical_interface_quanta,
   }
 
 

@@ -20,17 +20,23 @@ class rjil::neutron::contrail(
   $seed                = false,
   $tenants             = undef,
   $new_iam             = false,
+  $ec2_db              = false,
 ) {
 
   include ::rjil::neutron
 
   ##
   # Database connection is not required for contrail
+  # if ec2_db not configured to access by neutron we need not
+  # have its entry
   ##
 
-  Neutron_config<| title == 'database/connection' |> {
-    ensure => absent
+  unless $ec2_db {
+    Neutron_config<| title == 'database/connection' |> {
+      ensure => absent
+    }
   }
+
 
   ##
   # Subscribe neutron-server to contrailplugin.ini

@@ -1,0 +1,29 @@
+[logs]
+#time_interval in seconds
+time_interval: <%= @time_interval %>
+#time_delta in seconds
+time_delta: <%= @time_delta %>
+n_try: 5
+url: <%= @analytics_query_endpoint %>
+dss_account_id: <%= @dss_account_id %>
+
+[secret]
+access_key: <%= @jcs_access_key %>
+secret_key: <%= @jcs_secret_key %>
+vpc_url: <%= @jcs_vpc_endpoint %>
+dss_url: <%= @jcs_dss_endpoint %>
+iam_url: <%= @jcs_iam_endpoint %>
+
+[bucket]
+actions : jrn:jcs:dss:ListBucket,jrn:jcs:dss:GetObject
+resources: {"service":"dss"}
+
+[rabbitmq]
+broker_url: <%= @broker_url %>
+
+[task]
+#periodic_task_interval in seconds
+periodic_task_interval: <%= @periodic_task_interval %>
+
+[zookeeper]
+hosts: <%= "%s:%s" % [zookeeper_hosts.join(":%s," % [zookeeper_port]), zookeeper_port] %>
