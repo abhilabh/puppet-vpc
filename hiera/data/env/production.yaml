@@ -439,7 +439,7 @@ ec2api::ec2api_config:
   keystone_authtoken/signing_dir:
     value: '/var/cache/ec2api'
   admin_account/account_id:
-    value:  "00000000000000000000723220141072"
+    value:  "00000000000000000000723220141072 00000000000000000000717169237989"
   admin_account/password:
     value:  "dGVTdE0zUGxz"
   admin_account/query_url:
