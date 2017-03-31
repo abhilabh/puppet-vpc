@@ -389,7 +389,7 @@ rjil::celery::celery::jcs_secret_key: 'rUXGaZQinCMJi9FXuT/HAPg374SMKN6+Evjv/zx46
 rjil::celery::celery::jcs_vpc_endpoint: 'https://vpc.ind-west-1.staging.jiocloudservices.com'
 rjil::celery::celery::jcs_dss_endpoint: 'https://dss.ind-west-1.staging.jiocloudservices.com'
 rjil::celery::celery::jcs_iam_endpoint: 'https://iam.ind-west-1.staging.jiocloudservices.com'
-rjil::celery::celery::periodic_task_interval: 3600
-#rjil::celery::celery::time_interval:
-#rjil::celery::celery::time_delta:
+rjil::celery::celery::periodic_task_interval: 1800
+rjil::celery::celery::time_interval: 1800
+rjil::celery::celery::time_delta: 900
 

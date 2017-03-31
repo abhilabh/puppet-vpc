@@ -24,6 +24,7 @@ broker_url: <%= @broker_url %>
 [task]
 #periodic_task_interval in seconds
 periodic_task_interval: <%= @periodic_task_interval %>
+delta_correction_tasks_count: <%= @delta_correction_tasks_count %>
 
 [zookeeper]
 hosts: <%= "%s:%s" % [zookeeper_hosts.join(":%s," % [zookeeper_port]), zookeeper_port] %>
