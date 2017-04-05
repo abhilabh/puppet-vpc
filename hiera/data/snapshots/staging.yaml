@@ -1,5 +1,6 @@
 #All Staging Snapshots
 
 vpcbase_snap: 7fa9daf8-529a-4223-b974-0b55e6e29aa9
-contrail_main_snap: 6e600d02-e24b-4a35-b4b0-0e176c9fe921
+contrail_main_snap: 26610ff8-2b02-45a0-8345-4d65ea226996
 ubuntu_main_snap: 3657a405-c6b3-4648-af1b-2f28cb8324f6
+vpcflowlog_main_snap: 0bf68b14-2a47-49b2-8386-36bab67e936c
