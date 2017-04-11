@@ -13,6 +13,8 @@ class rjil::celery::celery (
   $time_delta = 1200,
   $worker_user = 'celery_worker',
   $periodic_task_interval = 300,
+  $periodic_purge_task_interval = 604800,
+  $flowlog_purge_days = 7,
   $delta_correction_tasks_count = 6,
   $broker_url = 'amqp://rabbit:rabbit@127.0.0.1//',
   $flowlog_logfile = '/var/log/flowlogd/flowlog.log',
