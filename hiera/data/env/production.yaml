@@ -451,9 +451,9 @@ ec2api::ec2api_config:
 
 ##Flowlog##
 rjil::celery::celery::analytics_query_endpoint: 'http://localhost:8081/analytics/query'
-rjil::celery::celery::dss_account_id: 'Ax2GIXtvWlNrXJW2BGuD4aULzhME6FF82RKiHA=='
-rjil::celery::celery::jcs_access_key: 'ZAD+l7yYyYQsVUqylRYONJFil2POdU0LhrhipMwu75TXsIvc2Dp29LvsY1lLqZnf'
-rjil::celery::celery::jcs_secret_key: 'rUXGaZQinCMJi9FXuT/HAPg374SMKN6+Evjv/zx46oxiGl/V6bR1OyKco8FASZ8D'
+rjil::celery::celery::dss_account_id: 'vCcwtmPknAZkb699Rqb6EzuJLLYDLljYlGIOGg=='
+rjil::celery::celery::jcs_access_key: 'F32IqFvWlruHDsl1Wn4cnpfkKhL2AzQ26v5RZLrSpn+KmI1o128nnpKjWVAbycX3'
+rjil::celery::celery::jcs_secret_key: 'qB+eG39KrUaLy3abB/Ygd5Jb8L16LJPfFnBzU2F07iZ/knMt5Ay9RTISbOh8YgIp'
 rjil::celery::celery::jcs_vpc_endpoint: 'https://vpc.ind-west-1.staging.jiocloudservices.com'
 rjil::celery::celery::jcs_dss_endpoint: 'https://dss.ind-west-1.staging.jiocloudservices.com'
 rjil::celery::celery::jcs_iam_endpoint: 'https://iam.ind-west-1.staging.jiocloudservices.com'
